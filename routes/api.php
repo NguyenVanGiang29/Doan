@@ -22,4 +22,5 @@ Route::get('/name', function (){
     return 'giang';
 });
 
+Route::get();
 

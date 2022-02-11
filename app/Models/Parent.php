@@ -5,7 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Parent extends Model
+class Parentt extends Model
 {
     use HasFactory;
+
+    protected $table = 'parents';
+    protected $fillable = [
+        'phone',
+        'address',
+        'job',
+        'avatar',
+        'user_id',
+    ];
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function p_post(){
+        return $this->hasMany(P_post::class, 'parent_id', 'id');
+    }
 }
