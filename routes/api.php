@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +23,5 @@ Route::get('/name', function (){
     return 'giang';
 });
 
-Route::get();
+Route::resource('users', UserController::class);
 

@@ -25,7 +25,16 @@ class T_post extends Model
         return $this->belongsTo(Tutor::class, 'tutor_id', 'id');
     }
 
-    public function post(){
-        return $this->belongsTo(Post::class, 'post_id', 'id');
+    public function p_offer(){
+        return $this->hasMany(P_offer::class, 't_post_id', 'id');
     }
+
+    public function p_save(){
+        return $this->hasMany(P_save::class, 't_post_id', 'id');
+    }
+
+    public function t_request(){
+        return $this->hasMany(T_request::class, 't_post_id', 'id');
+    }
+
 }

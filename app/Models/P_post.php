@@ -11,23 +11,35 @@ class P_post extends Model
 
     protected $table = 'p_posts';
     protected $fillable = [
-        'post_id',
-        'parent_id',
         'subject',
+        'topic',
         'class',
-        'location',
+        'time',
         'method',
         'price',
-        'time',
-        'session',
+        'phone',
+        'location',
         'desc',
+        'number_lesson',
+        'time_teaching',
+        'parent_id',
+        'session',
     ];
 
     public function parent(){
         return $this->belongsTo(Parentt::class, 'parent_id', 'id');
     }
 
-    public function post(){
-        return $this->belongsTo(Post::class, 'post_id', 'id');
-    } 
+    public function t_offer(){
+        return $this->hasMany(T_offer::class, 'p_post_id', 'id');
+    }
+
+    public function t_save(){
+        return $this->hasMany(T_save::class, 'p_post_id', 'id');
+    }
+
+    public function p_request(){
+        return $this->hasMany(P_request::class, 'p_post_id', 'id');
+    }
+
 }

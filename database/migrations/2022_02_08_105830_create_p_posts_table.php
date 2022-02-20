@@ -15,18 +15,19 @@ class CreatePPostsTable extends Migration
     {
         Schema::create('p_posts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('post_id');
-            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
-            $table->unsignedBigInteger('parent_id');
-            $table->foreign('parent_id')->references('id')->on('parents')->onDelete('cascade');
             $table->string('subject');
+            $table->string('topic');
             $table->string('class');
-            $table->string('location');
+            $table->string('time');
             $table->string('method');
             $table->integer('price');
-            $table->string('time');
-            $table->string('session');
+            $table->integer('phone');
+            $table->string('location');
             $table->string('desc');
+            $table->string('number_lesson');
+            $table->string('time_teaching');
+            $table->unsignedBigInteger('parent_id');
+            $table->foreign('parent_id')->references('id')->on('parents')->onDelete('cascade');
             $table->timestamps();
         });
     }

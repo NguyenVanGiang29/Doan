@@ -18,7 +18,6 @@ class CreateReviewsTable extends Migration
             $table->unsignedBigInteger('tutor_id');
             $table->foreign('tutor_id')->references('id')->on('tutors')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('parent_id');
-            $table->foreign('parent_id')->references('id')->on('parents')->onUpdate('cascade');
             $table->integer('rate');
             $table->string('content');
             $table->timestamps();

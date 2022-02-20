@@ -15,14 +15,14 @@ class CreateTutorsTable extends Migration
     {
         Schema::create('tutors', function (Blueprint $table) {
             $table->id();
+            $table->string('sex');
+            $table->string('job');
+            $table->string('birthday');
+            $table->string('address');
+            $table->integer('phone');
+            $table->string('avatar');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
-            $table->string('sex');
-            $table->string('birthday');
-            $table->integer('phone');
-            $table->string('address');
-            $table->string('job');
-            $table->string('avatar');
             $table->timestamps();
         });
     }

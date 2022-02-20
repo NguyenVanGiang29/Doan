@@ -11,9 +11,9 @@ class Parentt extends Model
 
     protected $table = 'parents';
     protected $fillable = [
-        'phone',
-        'address',
         'job',
+        'address',
+        'phone',
         'avatar',
         'user_id',
     ];
@@ -23,6 +23,10 @@ class Parentt extends Model
     }
 
     public function p_post(){
-        return $this->hasMany(P_post::class, 'parent_id', 'id');
+        return $this->hasMany(P_post::class, 'tutor_id', 'id');
+    }
+
+    public function review(){
+        return $this->hasMany(Review::class, 'tutor_id', 'id');
     }
 }

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Parentt;
-use App\Http\Requests\StoreParenttRequest;
-use App\Http\Requests\UpdateParenttRequest;
+use Illuminate\Http\Request;
+use App\Models\User;
+use App\Http\Requests\StoreUserRequest;
 
-class ParentController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,8 @@ class ParentController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::all();
+        return $user;
     }
 
     /**
@@ -31,21 +32,28 @@ class ParentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreParenttRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreParenttRequest $request)
+    public function store(StoreUserRequest $request)
     {
-        //
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+
+        $user->save();
+
+        return response()->json(['message' => 'Thêm thành công!']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Parentt  $parentt
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Parentt $parentt)
+    public function show($id)
     {
         //
     }
@@ -53,10 +61,10 @@ class ParentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Parentt  $parentt
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Parentt $parentt)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +72,11 @@ class ParentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateParenttRequest  $request
-     * @param  \App\Models\Parentt  $parentt
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateParenttRequest $request, Parentt $parentt)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +84,10 @@ class ParentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Parentt  $parentt
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Parentt $parentt)
+    public function destroy($id)
     {
         //
     }
