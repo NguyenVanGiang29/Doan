@@ -16,27 +16,27 @@ class ParentSeeder extends Seeder
         DB::table('parents')->insert(
             [
                 'id' => 1,
-                'user_id' => 4,
-                'phone' => '0326333336',
-                'address' => '260 Cầu Giấy, Hà Nội',
                 'job' => 'Văn Phòng',
+                'address' => '260 Cầu Giấy, Hà Nội',
+                'phone' => 0326333336,
                 'avatar' => 'avatar.jpg',
+                'user_id' => 4,
             ],
             [
                 'id' => 2,
-                'user_id' => 5,
-                'phone' => '0326333238',
-                'address' => '80 Hồ Tùng Mậu, Hà Nội',
                 'job' => 'Kỹ sư',
+                'address' => '80 Hồ Tùng Mậu, Hà Nội',
+                'phone' => 0326333232,
                 'avatar' => 'avatar.jpg',
+                'user_id' => 5,
             ],
             [
                 'id' => 3,
-                'user_id' => 6,
-                'phone' => '0326388336',
-                'address' => '90 Hoàng Đạo Thúy, Hà Nội',
                 'job' => 'Kinh doanh',
+                'address' => '90 Hoàng Đạo Thúy, Hà Nội',
+                'phone' => 0326711121,
                 'avatar' => 'avatar.jpg',
+                'user_id' => 6,
             ],
         );
     }

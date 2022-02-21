@@ -18,4 +18,5 @@ class T_save extends Model
     public function p_post(){
         return $this->belongsTo(P_post::class, 'p_post_id', 'id');
     }
+    
 }
