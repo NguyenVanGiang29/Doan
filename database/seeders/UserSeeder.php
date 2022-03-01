@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert(
+        DB::table('users')->insert([
             [
                 'id' => 1,
                 'name' => 'Nguyen Van Giang',
@@ -51,6 +51,6 @@ class UserSeeder extends Seeder
                 'email' => 'diang.nv291198@gmail.com',
                 'password' => '123456',
             ],
-        );
+        ]);
     }
 }

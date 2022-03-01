@@ -17,7 +17,7 @@ class CreateParentsTable extends Migration
             $table->id();
             $table->string('job');
             $table->string('address');
-            $table->integer('phone');
+            $table->string('phone');
             $table->string('avatar');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

@@ -14,37 +14,37 @@ class TutorSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tutors')->insert(
+        DB::table('tutors')->insert([
             [
                 'id' => 1,
                 'user_id' => 1,
                 'sex' => 'Nam',
-                'birthday' => '20/11/1999',
-                'phone' => '0326889993',
+                'birthday' => '1999-11-20',
+                'phone' => '0326333232',
                 'address' => 'số 20 Cầu Giấy, Hà Nội',
-                'job' => 'Sinh viên',
+                'job' => 'Sinh Viên',
                 'avatar' => 'avatar.jpg',
             ],
             [
                 'id' => 2,
                 'user_id' => 2,
                 'sex' => 'Nữ',
-                'birthday' => '20/11/2000',
-                'phone' => '0326885593',
+                'birthday' => '2000-11-20',
+                'phone' => '0326318888',
                 'address' => 'số 23 Huỳnh Thúc Kháng, Hà Nội',
-                'job' => 'Sinh viên',
+                'job' => 'Sinh Viên',
                 'avatar' => 'avatar.jpg',
             ],
             [
                 'id' => 3,
                 'user_id' => 3,
                 'sex' => 'Nữ',
-                'birthday' => '03/08/1995',
-                'phone' => '0326889993',
+                'birthday' => '1995-08-03',
+                'phone' => '0326288883',
                 'address' => 'số 33 Phạm Văn Đồng, Hà Nội',
-                'job' => 'Giáo viên',
+                'job' => 'Giáo Viên',
                 'avatar' => 'avatar.jpg',
             ],
-        );
+        ]);
     }
 }

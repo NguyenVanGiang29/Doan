@@ -21,7 +21,7 @@ class CreatePPostsTable extends Migration
             $table->string('time');
             $table->string('method');
             $table->integer('price');
-            $table->integer('phone');
+            $table->string('phone');
             $table->string('location');
             $table->string('desc');
             $table->string('number_lesson');

@@ -14,7 +14,7 @@ class PPostSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('p_posts')->insert(
+        DB::table('p_posts')->insert([
             [
                'id' => 1,
                'subject' => 'Toán',
@@ -76,6 +76,6 @@ class PPostSeeder extends Seeder
                 'parent_id' => 3,
              ],
             
-        );
+        ]);
     }
 }

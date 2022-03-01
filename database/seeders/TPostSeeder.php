@@ -14,10 +14,10 @@ class TPostSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('t_posts')->insert(
+        DB::table('t_posts')->insert([
             [
                 'id' => 1,
-                'phone' => 0326700006,
+                'phone' => '0326700006',
                 'method' => 'online',
                 'subject' => 'Toán',
                 'topic' => 'Ôn học sinh giỏi',
@@ -31,7 +31,7 @@ class TPostSeeder extends Seeder
             ],
             [
                 'id' => 2,
-                'phone' => 0326611116,
+                'phone' => '0326611116',
                 'method' => 'offline',
                 'subject' => 'Văn',
                 'topic' => 'Ôn học sinh giỏi',
@@ -45,7 +45,7 @@ class TPostSeeder extends Seeder
             ],
             [
                 'id' => 3,
-                'phone' => 0326661116,
+                'phone' => '0326661116',
                 'method' => 'offline',
                 'subject' => 'Anh',
                 'topic' => 'Chương trình trên lớp',
@@ -59,7 +59,7 @@ class TPostSeeder extends Seeder
             ],
             [
                 'id' => 4,
-                'phone' => 0326661113,
+                'phone' => '0326661113',
                 'method' => 'online',
                 'subject' => 'Anh',
                 'topic' => 'Chương trình trên lớp',
@@ -71,6 +71,6 @@ class TPostSeeder extends Seeder
                 'experience' => 'Dạy 5 năm ôn thi hsg môn Anh',
                 'tutor_id' => 3,
             ],
-        );
+        ]);
     }
 }

@@ -15,7 +15,7 @@ class CreateTPostsTable extends Migration
     {
         Schema::create('t_posts', function (Blueprint $table) {
             $table->id();
-            $table->integer('phone');
+            $table->string('phone');
             $table->string('method');
             $table->string('subject');
             $table->string('topic');
