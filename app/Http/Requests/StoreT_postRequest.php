@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class StoreT_postRequest extends FormRequest
+class StoreT_postRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreT_postRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,14 @@ class StoreT_postRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'phone' => 'required',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'phone' => 'phone',
         ];
     }
 }

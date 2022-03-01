@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Tutor;
 use App\Http\Requests\StoreTutorRequest;
 use App\Http\Requests\UpdateTutorRequest;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 class TutorController extends Controller
 {
     /**
@@ -15,7 +16,10 @@ class TutorController extends Controller
      */
     public function index()
     {
-        //
+        $tutors = DB::table('tutors')
+                ->join('users', 'users.id', '=', 'tutors.user_id')
+                ->get();
+        return $tutors;
     }
 
     /**
@@ -36,7 +40,28 @@ class TutorController extends Controller
      */
     public function store(StoreTutorRequest $request)
     {
-        //
+        $tutor = new Tutor;
+        DB::beginTransaction();
+        try {
+            if($request->hasFile('image_file')) {
+                $url = Storage::disk('public')->put('avatar', $request->file('image_file'));
+                $tutor->avatar = $url;
+            }
+            $tutor->sex = $request->sex;
+            $tutor->job = $request->job;
+            $tutor->birthday = $request->birthday;
+            $tutor->address = $request->address;
+            $tutor->phone = $request->phone;
+            $tutor->user_id = $request->user_id;
+
+            $tutor->save();
+            DB::commit();
+            return response()->json(['message' => 'Thêm thành công!']);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+            return response()->json($e,500);
+        }
     }
 
     /**
@@ -45,9 +70,15 @@ class TutorController extends Controller
      * @param  \App\Models\Tutor  $tutor
      * @return \Illuminate\Http\Response
      */
-    public function show(Tutor $tutor)
+    public function show($id)
     {
-        //
+        $tutor = DB::table('tutors')
+        ->join('users', 'users.id', '=', 'tutors.user_id')
+        ->where('user_id', '=', $id)
+        ->select('email', 'name', 'sex', 'job', 'birthday', 'address', 'phone','avatar')
+        ->get();
+
+        return $tutor;
     }
 
     /**
@@ -68,9 +99,29 @@ class TutorController extends Controller
      * @param  \App\Models\Tutor  $tutor
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTutorRequest $request, Tutor $tutor)
+    public function update(UpdateTutorRequest $request, $id)
     {
-        //
+        $tutor = Tutor::find($id);
+        DB::beginTransaction();
+        try {
+            if($request->hasFile('image_file')){
+                $url = Storage::disk('public')->put('avatar', $request->file('image_file'));
+                $tutor->avatar = $url;
+            }
+            $tutor->sex = $request->sex;
+            $tutor->job = $request->job;
+            $tutor->birthday = $request->birthday;
+            $tutor->address = $request->address;
+            $tutor->phone = $request->phone;
+            $tutor->user_id = $request->user_id;
+
+            $tutor->update();
+            DB::commit();
+            return response()->json(['message' => 'Sửa thành công!']);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json($e);
+        }
     }
 
     /**
@@ -79,8 +130,11 @@ class TutorController extends Controller
      * @param  \App\Models\Tutor  $tutor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tutor $tutor)
+    public function destroy($id)
     {
-        //
+        $tutor = Tutor::find($id);
+        $tutor->delete();
+
+        return response()->json(['message' => 'Xóa thành công!']);
     }
 }

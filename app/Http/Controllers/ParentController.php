@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Parentt;
 use App\Http\Requests\StoreParenttRequest;
 use App\Http\Requests\UpdateParenttRequest;
+use Illuminate\Support\Facades\DB;
 
 class ParentController extends Controller
 {
@@ -15,7 +16,10 @@ class ParentController extends Controller
      */
     public function index()
     {
-        //
+        $parents = DB::table('parents')
+                ->join('users', 'users.id', '=', 'parents.user_id')
+                ->get();
+        return $parents;
     }
 
     /**
@@ -45,9 +49,15 @@ class ParentController extends Controller
      * @param  \App\Models\Parentt  $parentt
      * @return \Illuminate\Http\Response
      */
-    public function show(Parentt $parentt)
+    public function show($id)
     {
-        //
+        $parent = DB::table('parents')
+        ->join('users', 'users.id', '=', 'parents.user_id')
+        ->where('user_id', '=', $id)
+        ->select('email', 'name', 'job', 'address', 'phone','avatar')
+        ->get();
+
+        return $parent;
     }
 
     /**
