@@ -15,7 +15,8 @@ class PPostController extends Controller
      */
     public function index()
     {
-        //
+        $p_post = P_post::all();
+        return $p_post;
     }
 
     /**

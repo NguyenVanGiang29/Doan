@@ -26,7 +26,7 @@ class StoreTutorRequest extends BaseRequest
         return [
             'address' => 'required|max:255',
             'phone' => 'required',
-            'image_file' => 'required',
+            'avatar' => 'required',
         ];
     }
 
@@ -35,7 +35,7 @@ class StoreTutorRequest extends BaseRequest
         return [
             'address' => 'address',
             'phone' => 'required',
-            'image_file' => 'required',
+            'avatar' => 'required',
         ];
     }
 }

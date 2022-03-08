@@ -23,7 +23,7 @@ class TutorSeeder extends Seeder
                 'phone' => '0326333232',
                 'address' => 'số 20 Cầu Giấy, Hà Nội',
                 'job' => 'Sinh Viên',
-                'avatar' => 'avatar.jpg',
+                'avatar' => 'avatar/fVxTWX41k4JrpSbXfkoadovX0OlgaB8Uie2bsIsR.png',
             ],
             [
                 'id' => 2,
@@ -33,7 +33,7 @@ class TutorSeeder extends Seeder
                 'phone' => '0326318888',
                 'address' => 'số 23 Huỳnh Thúc Kháng, Hà Nội',
                 'job' => 'Sinh Viên',
-                'avatar' => 'avatar.jpg',
+                'avatar' => 'avatar/fVxTWX41k4JrpSbXfkoadovX0OlgaB8Uie2bsIsR.png',
             ],
             [
                 'id' => 3,
@@ -43,7 +43,7 @@ class TutorSeeder extends Seeder
                 'phone' => '0326288883',
                 'address' => 'số 33 Phạm Văn Đồng, Hà Nội',
                 'job' => 'Giáo Viên',
-                'avatar' => 'avatar.jpg',
+                'avatar' => 'avatar/fVxTWX41k4JrpSbXfkoadovX0OlgaB8Uie2bsIsR.png',
             ],
         ]);
     }

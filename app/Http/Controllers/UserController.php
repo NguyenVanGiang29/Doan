@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -56,7 +57,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        $user = DB::table('users')
+        ->where('id', '=', $id)
+        ->select('name', 'email', 'password')
+        ->get();
+        
         return $user;
     }
 
@@ -102,5 +107,13 @@ class UserController extends Controller
         $user->delete();
         
         return response()->json(['message' => 'Xóa thành công!']);
+    }
+
+    public function getemail(){
+        $emails = DB::table('users')
+                ->where('state_account', '=', 0)
+                ->select('id', 'email', 'name')
+                ->get();
+        return $emails;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tutor;
+use App\Models\User;
 use App\Http\Requests\StoreTutorRequest;
 use App\Http\Requests\UpdateTutorRequest;
 use Illuminate\Support\Facades\DB;
@@ -40,11 +41,12 @@ class TutorController extends Controller
      */
     public function store(StoreTutorRequest $request)
     {
+        $user = User::find($request->user_id);
         $tutor = new Tutor;
         DB::beginTransaction();
         try {
-            if($request->hasFile('image_file')) {
-                $url = Storage::disk('public')->put('avatar', $request->file('image_file'));
+            if($request->hasFile('avatar')) {
+                $url = Storage::disk('public')->put('avatar', $request->file('avatar'));
                 $tutor->avatar = $url;
             }
             $tutor->sex = $request->sex;
@@ -53,7 +55,9 @@ class TutorController extends Controller
             $tutor->address = $request->address;
             $tutor->phone = $request->phone;
             $tutor->user_id = $request->user_id;
-
+            $user->name = $request->name;
+            $user->state_account = 1;
+            $user->save();
             $tutor->save();
             DB::commit();
             return response()->json(['message' => 'Thêm thành công!']);
@@ -101,11 +105,12 @@ class TutorController extends Controller
      */
     public function update(UpdateTutorRequest $request, $id)
     {
-        $tutor = Tutor::find($id);
+        $tutor = Tutor::where('user_id', $id)->first();
+        // $tutor = Tutor::find(8);
         DB::beginTransaction();
         try {
-            if($request->hasFile('image_file')){
-                $url = Storage::disk('public')->put('avatar', $request->file('image_file'));
+            if($request->hasFile('avatar')){
+                $url = Storage::disk('public')->put('avatar', $request->file('avatar'));
                 $tutor->avatar = $url;
             }
             $tutor->sex = $request->sex;
