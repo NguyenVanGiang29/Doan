@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Parentt;
+use App\Models\User;
 use App\Http\Requests\StoreParenttRequest;
 use App\Http\Requests\UpdateParenttRequest;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Storage;
 class ParentController extends Controller
 {
     /**
@@ -40,7 +41,29 @@ class ParentController extends Controller
      */
     public function store(StoreParenttRequest $request)
     {
-        //
+        $user = User::find($request->user_id);
+        $parent = new Parentt;
+        DB::beginTransaction();
+        try {
+            if($request->hasFile('avatar')) {
+                $url = Storage::disk('public')->put('avatar', $request->file('avatar'));
+                $parent->avatar = $url;
+            }
+            $parent->job = $request->job;
+            $parent->address = $request->address;
+            $parent->phone = $request->phone;
+            $parent->user_id = $request->user_id;
+            $user->name = $request->name;
+            $user->state_account = 1;
+            $user->save();
+            $parent->save();
+            DB::commit();
+            return response()->json(['message' => 'Thêm thành công!']);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+            return response()->json($e,500);
+        }
     }
 
     /**
@@ -78,9 +101,30 @@ class ParentController extends Controller
      * @param  \App\Models\Parentt  $parentt
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateParenttRequest $request, Parentt $parentt)
+    public function update(UpdateParenttRequest $request, $id)
     {
-        //
+        $parent = Parentt::where('user_id', $id)->first();
+        $user = User::find($request->user_id);
+        DB::beginTransaction();
+        try {
+            if($request->hasFile('avatar')) {
+                $url = Storage::disk('public')->put('avatar', $request->file('avatar'));
+                $parent->avatar = $url;
+            }
+            $parent->job = $request->job;
+            $parent->address = $request->address;
+            $parent->phone = $request->phone;
+            $parent->user_id = $request->user_id;
+            $user->name = $request->name;
+            $user->update();
+            $parent->update();
+            DB::commit();
+            return response()->json(['message' => 'Sửa thành công!']);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+            return response()->json($e,500);
+        }
     }
 
     /**

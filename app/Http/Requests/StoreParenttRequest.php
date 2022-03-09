@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class StoreParenttRequest extends FormRequest
+class StoreParenttRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreParenttRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class StoreParenttRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'address' => 'required|max:255',
+            'phone' => 'required',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'address' => 'address',
+            'phone' => 'phone',
         ];
     }
 }

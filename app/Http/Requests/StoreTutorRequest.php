@@ -34,8 +34,8 @@ class StoreTutorRequest extends BaseRequest
     {
         return [
             'address' => 'address',
-            'phone' => 'required',
-            'avatar' => 'required',
+            'phone' => 'phone',
+            'avatar' => 'avatar',
         ];
     }
 }

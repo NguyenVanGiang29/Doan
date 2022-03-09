@@ -106,7 +106,6 @@ class TutorController extends Controller
     public function update(UpdateTutorRequest $request, $id)
     {
         $tutor = Tutor::where('user_id', $id)->first();
-        // $tutor = Tutor::find(8);
         DB::beginTransaction();
         try {
             if($request->hasFile('avatar')){
